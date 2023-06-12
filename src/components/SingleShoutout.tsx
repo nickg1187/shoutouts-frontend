@@ -1,17 +1,48 @@
+import { Link } from "react-router-dom";
 import Shoutout from "../models/Shoutout";
 import "./SingleShoutout.css";
+import { deleteOneShoutout } from "../services/shoutoutApiService";
 
 interface Props {
-  shoutObj: Shoutout;
+  shoutout: Shoutout;
+  update: () => void;
 }
 
-const SingleShoutout = ({ shoutObj }: Props) => {
+const SingleShoutout = ({ shoutout, update }: Props) => {
+  const deleteHandler = (): void => {
+    deleteOneShoutout(shoutout._id!).then((zebra) => {
+      console.log(zebra);
+      update();
+    });
+  };
+
   return (
-    <div className="SingleShoutout">
-      <h3>Shout out to {shoutObj.to}</h3>
-      <p className="from-text">- From {shoutObj.from}</p>
-      <p>{shoutObj.text}</p>
-    </div>
+    <li className="SingleShoutout">
+      <h3>
+        Shoutout to{" "}
+        <Link to={`/user/${encodeURIComponent(shoutout.to)}`}>
+          {shoutout.to}
+        </Link>
+      </h3>
+      <p className="from">
+        — from{" "}
+        {shoutout.authorPhoto && (
+          <img
+            className="author-img"
+            src={shoutout.authorPhoto}
+            alt="author profile image"
+          />
+        )}
+        <Link to={`/user/${encodeURIComponent(shoutout.from)}`}>
+          {shoutout.from}
+        </Link>
+      </p>
+      <p>{shoutout.text}</p>
+      {shoutout.shoutoutPhoto && (
+        <img src={shoutout.shoutoutPhoto} alt="shoutout photo" />
+      )}
+      <button onClick={deleteHandler}>delete</button>
+    </li>
   );
 };
 

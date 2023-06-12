@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import ShoutoutList from "./components/ShoutoutList";
-import NewSOForm from "./components/NewSOForm";
-import Shoutout from "./models/Shoutout";
-import { getAllShoutouts } from "./services/shoutoutApiService";
+import Header from "./components/Header";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Main from "./components/Main";
+import Details from "./components/Details";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
 
 function App() {
-  const [allShoutouts, setAllShoutouts] = useState<Shoutout[]>([]);
-  const refreshShoutouts = async () => {
-    await getAllShoutouts().then((res) => {
-      setAllShoutouts(res);
-    });
-  };
-  useEffect(() => {
-    refreshShoutouts();
-  }, []);
+  const { user } = useContext(AuthContext);
   return (
     <div className="App">
-      <h2>All Shout Outs</h2>
-      <ShoutoutList shoutz={allShoutouts} />
-      <NewSOForm update={refreshShoutouts} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/user/:name" element={<Details />} />
+          {/* wildcard */}
+          <Route
+            path="/me"
+            element={user ? <Details /> : <Navigate to="/" />}
+          />
+          {/* <Route path="/me" element={<Details />} /> */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -1,8 +1,15 @@
-.SingleShoutout {
-  background-color: white;
-  border: 1px solid #aaa;
+.SingleShoutout a {
+  color: red;
 }
 
-.from-text {
-  color: #333;
+.SingleShoutout .from {
+  display: flex;
+  align-items: center;
+}
+
+.SingleShoutout .author-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 10px;
 }

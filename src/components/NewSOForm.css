@@ -1,11 +1,4 @@
-.Form {
-  background-color: white;
-  border: 1 px solid #aaa;
+.NewSOForm {
   display: flex;
   flex-direction: column;
-}
-
-.Form button {
-  background-color: white;
-  border: 1 px solid #999;
 }

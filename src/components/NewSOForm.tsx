@@ -3,10 +3,9 @@ import "./NewSOForm.css";
 import { addAShoutout } from "../services/shoutoutApiService";
 import Shoutout from "../models/Shoutout";
 import AuthContext from "../context/AuthContext";
-import { getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
+import { getDownloadURL, uploadBytes } from "firebase/storage";
 import { ref } from "firebase/storage";
 import { storage } from "../firebaseConfig";
-import { log } from "console";
 
 interface Props {
   update: () => void;

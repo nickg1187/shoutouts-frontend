@@ -51,7 +51,7 @@ const Details = () => {
   useEffect(() => {
     // call a fn that get all so's to a particular person
     updateShoutouts();
-  }, [nameFromPathParam, user]);
+  }, [nameFromPathParam, user, updateShoutouts]);
 
   return (
     <main className="Details">

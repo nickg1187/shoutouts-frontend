@@ -13,7 +13,7 @@ const Header = () => {
       {user ? (
         <div>
           <p>Welcome, {user.displayName}</p>
-          <img src={user.photoURL || ""} alt="profile image" />
+          <img src={user.photoURL || ""} alt="profile" />
         </div>
       ) : (
         <p>Please sign in</p>

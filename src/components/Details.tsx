@@ -75,7 +75,7 @@ const Details = () => {
         }
       }
     })();
-  }, [nameFromPathParam, user]);
+  }, [nameFromPathParam, user, navigate]);
 
   return (
     <main className="Details">
